@@ -16,8 +16,7 @@ app.use(cors(
     }
 ));
 app.use(express.json());
-
-
+app.set('trust proxy', true);
 app.get('/', (req, res) => {
     res.json("Server is handling get request here");
 })
