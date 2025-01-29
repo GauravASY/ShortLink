@@ -80,7 +80,7 @@ const Link = ({setBoxVisible, setLinkBoxVisible, setLinkType, setLinkId, searchT
                 </a>
               </td>
               <td >
-                <a href={`${window.location.origin}/api/v1/link/${link.shortId}`} target="_blank" rel="noopener noreferrer">
+                <a href={`${import.meta.env.VITE_BACKEND_URL}/api/v1/link/${link.shortId}`} target="_blank">
                   {link.shortId}
                 </a>
                 <img src={copy} alt="Copy" onClick={() => navigator.clipboard.writeText(link.shortId)}/>
