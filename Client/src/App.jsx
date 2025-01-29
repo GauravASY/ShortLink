@@ -98,7 +98,7 @@ function App() {
         </div>
       </div>
       <div className='MainContainer'>
-          <Navbar setLinkBoxVisible={setLinkBoxVisible} setLinkType={setLinkType} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+          <Navbar setLinkBoxVisible={setLinkBoxVisible} setLinkType={setLinkType} searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={user}/>
           <div className="DataContainer">
               {
                 dataComponent[selected]
