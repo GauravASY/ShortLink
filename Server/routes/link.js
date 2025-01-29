@@ -25,7 +25,8 @@ linkRouter.post("/", authorization, async (req, res) => {
   }
 
   try {
-    const ua = parser(req.headers['user-agent']);
+    const uaParser = new parser(); 
+    const ua = uaParser.setUA(req.headers['user-agent']).getResult(); 
     const newLink = new ShortUrl({
       originalUrl,
       remarks,
