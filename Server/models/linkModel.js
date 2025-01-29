@@ -10,6 +10,7 @@ const shortUrlSchema = new mongoose.Schema({
     remarks: { type: String, default: "No Remarks" },
     ipAddress: { type: String, default: ""},
     userDevice: { type: String, default: ""},
+    deviceType : {type: String, default : ""},
 });
 
 const ShortUrl = mongoose.model("ShortUrl", shortUrlSchema);
