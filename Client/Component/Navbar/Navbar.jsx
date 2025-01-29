@@ -44,7 +44,7 @@ function Navbar({setLinkBoxVisible, setLinkType, searchTerm, setSearchTerm, user
                 { user?.username?.split(' ').map(word => word[0].toUpperCase()).join('')}
             {isDropdownVisible && (
                 <div className="dropdown">
-                    <span className='text' style={{fontSize:"0.7rem"}} onClick={handlelogout}>Logout</span>
+                    <span className='text' style={{fontSize:"0.9rem"}} onClick={handlelogout}>Logout</span>
                 </div>
             )}
             </div>
