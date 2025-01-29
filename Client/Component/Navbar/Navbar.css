@@ -11,9 +11,11 @@
     display : flex;
     align-items: center;
     justify-content: center;
+    cursor : pointer;
   }
 
   .dropdownContainer{
     position: relative;
     display: inline-block;
+    cursor : pointer;
   }
