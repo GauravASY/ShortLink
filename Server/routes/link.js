@@ -2,7 +2,7 @@ import express from "express";
 import ShortUrl from "../models/linkModel.js";
 import User from "../models/userModel.js";
 import authorization from "../middlewares/authorization.js";
-import parser from 'ua-parser-js';
+import UAParser from 'ua-parser-js';
 
 const linkRouter = express.Router();
 
@@ -25,8 +25,8 @@ linkRouter.post("/", authorization, async (req, res) => {
   }
 
   try {
-    const uaParser = new parser(); 
-    const ua = uaParser.setUA(req.headers['user-agent']).getResult(); 
+    const uaParser = new UAParser();
+    const ua = uaParser.setUA(req.headers['user-agent']).getResult();
     const newLink = new ShortUrl({
       originalUrl,
       remarks,
