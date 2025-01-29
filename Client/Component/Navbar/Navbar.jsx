@@ -29,7 +29,7 @@ function Navbar({setLinkBoxVisible, setLinkType, searchTerm, setSearchterm, user
                 <input type="text" placeholder='Search by remarks' className='inputCell' style={{paddingLeft:'36px'}} value={searchTerm} onChange={(e)=> setSearchterm(e.target.value)}/>
             </div>
             <div className="headings" style={{display:'flex', justifyContent:'center', alignItems:'center', padding:'8px', borderRadius:'4rem', background:'#FDE48A', color:'#923E0E'}}>
-                { user?.usernmae.split(' ').map(word => word[0].toUpperCase()).join('')}
+                { user?.username.split(' ').map(word => word[0].toUpperCase()).join('')}
             </div>
         </div>
     </div>
