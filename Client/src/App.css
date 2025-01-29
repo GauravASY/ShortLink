@@ -1,0 +1,25 @@
+.Sidebar{
+    display:flex;
+    flex-direction: column;
+    width:20%;
+}
+
+.MainContainer{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.DataContainer{
+    flex-grow: 1;
+    background-color: #ECECEE;
+    padding : 36px 20px;
+}
+
+.LinkContainer{
+    display : flex;
+    gap : 20px;
+    padding : 14px 20px;
+    border-radius: 0.7rem;
+    cursor : pointer;
+}

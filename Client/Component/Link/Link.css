@@ -1,0 +1,94 @@
+
+.table-container {
+    padding: 16px;
+    overflow-x: auto; 
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse; 
+    text-align: left;
+    font-family: "Manrope", serif;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 2px 2px 4px #3B3C51
+  }
+  
+
+  thead {
+    background-color:#F3F7FD;
+  }
+  
+  th {
+    padding: 18px 12px;
+    border: 1px solid #ddd;
+    font-weight: bold;
+    color: #3B3C51;
+  }
+  
+  tbody {
+    background-color: #fafafa; 
+  }
+  
+
+  td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+    max-width: 160px;
+    overflow: hidden;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  img {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+  }
+  
+  img:hover {
+    color: #000;
+  }
+  
+  .status {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  .status.active {
+    color: #28a745; 
+  }
+  
+  .status.inactive {
+    color: #ff9800; 
+  }
+
+  .short-link{
+    display: flex;
+    gap:6px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+    border: thin solid #ddd;
+  }
+  
+  .action-buttons img:hover {
+    transform: scale(1.1); 
+    transition: transform 0.2s;
+  }
+  

@@ -1,0 +1,28 @@
+.settingContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 8rem;  
+    margin-top: 1rem;
+}
+
+.InputContainer{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.settingInput{
+  padding: 6px 14px;
+  border: solid #3B3C51 thin;
+  border-radius: 4px;
+  font-family: "Manrope", serif;
+  font-size: 1rem;
+  flex-grow: 1;
+}
+
+.labelText{
+    display: flex;
+    align-items: center;
+    width: 20%;
+}

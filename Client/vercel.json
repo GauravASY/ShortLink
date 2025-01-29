@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" }
+    ],
+    "env": {
+      "VITE_BACKEND_URL" : "https://orderup-tlpd.onrender.com"
+   }
+  }
