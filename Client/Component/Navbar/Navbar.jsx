@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import search from '../../src/assets/Frame.png'
 import sun from '../../src/assets/Sun.png'
 import { useNavigate } from 'react-router-dom';
+import './Navbar.css'
 
 function Navbar({setLinkBoxVisible, setLinkType, searchTerm, setSearchTerm, user}) {
     const [isDropdownVisible, setisDropdownVisible] = useState(false);
