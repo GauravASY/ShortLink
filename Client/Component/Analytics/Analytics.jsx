@@ -86,7 +86,7 @@ function Analytics() {
                 />
               </td>
               <td>{data.ipAddress}</td>
-              <td>{data.userDevice.split(" ")[0]}</td>
+              <td>{data.userDevice}</td>
             </tr>
           ))}
         </tbody>
