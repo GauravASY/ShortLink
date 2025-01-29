@@ -140,11 +140,11 @@ userRouter.get("/getuser", authorization, async (req, res) => {
     try {
         const user = await User.findById(userId);
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ msg: 'User not found', success:false });
         }
-        res.json({ success: true, user });
+        res.json({ success: true, user, msg : "User found" });
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ msg: err.message, success:false });
     }
 })
 
