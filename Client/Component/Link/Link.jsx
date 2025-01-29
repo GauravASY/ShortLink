@@ -5,7 +5,7 @@ import edit from '../../src/assets/edit.png';
 import copy from '../../src/assets/copy.png';
 import axios from 'axios';
 
-const Link = ({setBoxVisible, setLinkBoxVisible, setLinkType, setLinkId}) => {
+const Link = ({setBoxVisible, setLinkBoxVisible, setLinkType, setLinkId, searchTerm}) => {
   const token = localStorage.getItem('token');
   const [links , setLinks] = useState([]);
 
@@ -44,6 +44,9 @@ const Link = ({setBoxVisible, setLinkBoxVisible, setLinkType, setLinkId}) => {
     }
   };
   
+  const filteredLinks = links.filter(link => 
+    link.remarks?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   
   return (
     <div className="table-container">
@@ -60,7 +63,7 @@ const Link = ({setBoxVisible, setLinkBoxVisible, setLinkType, setLinkId}) => {
           </tr>
         </thead>
         <tbody>
-          {links?.map((link, index) => (
+          { filteredLinks.length > 0 && filteredLinks?.map((link, index) => (
             <tr key={index}>
               <td>{new Date(link.createdAt).toLocaleString('en-US', { 
   month: 'short', 

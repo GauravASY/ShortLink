@@ -29,6 +29,7 @@ function App() {
   const [user, setUser] = useState({});
   const [deleteAcc, setDeleteAcc] = useState(false);
   const token = localStorage.getItem('token');
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(()=>{
     if(!token){
@@ -55,7 +56,7 @@ function App() {
   }
   const dataComponent = {
     Dashboard : <Dashboard/>,
-    Link : <Link setBoxVisible={setBoxVisible} setLinkBoxVisible={setLinkBoxVisible} setLinkType={setLinkType} setLinkId={setLinkId}/>,
+    Link : <Link setBoxVisible={setBoxVisible} setLinkBoxVisible={setLinkBoxVisible} setLinkType={setLinkType} setLinkId={setLinkId} searchTerm={searchTerm}/>,
     Analytics : <Analytics/>,
     Settings : <Settings setBoxVisible={setBoxVisible} user={user} setDeleteAcc={setDeleteAcc}/>
   }
@@ -97,7 +98,7 @@ function App() {
         </div>
       </div>
       <div className='MainContainer'>
-          <Navbar setLinkBoxVisible={setLinkBoxVisible} setLinkType={setLinkType}/>
+          <Navbar setLinkBoxVisible={setLinkBoxVisible} setLinkType={setLinkType} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
           <div className="DataContainer">
               {
                 dataComponent[selected]
