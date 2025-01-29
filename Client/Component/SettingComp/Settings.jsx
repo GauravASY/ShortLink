@@ -24,7 +24,7 @@ function Settings({setBoxVisible, user, setDeleteAcc}) {
   },
   {
     headers: {
-      Authorization: token, // Ensure the token is prefixed with "Bearer"
+      Authorization: token, 
     },
   }
 );
@@ -46,15 +46,15 @@ function Settings({setBoxVisible, user, setDeleteAcc}) {
     <div className='settingContainer'>
       <div className='InputContainer'>
         <span  className='text labelText'>Name</span>
-        <input type="text" id="Name" value={formdata.name} placeholder="John Doe" className='settingInput' onChange={(e)=> setformdata({...formdata, name : e.target.value})}/>
+        <input type="text" id="Name" value={formdata.name} style={{marginBottom:"0px"}} placeholder="John Doe" className='settingInput' onChange={(e)=> setformdata({...formdata, name : e.target.value})}/>
       </div>
       <div className='InputContainer'>
         <span  className='text labelText'>Email Id</span>
-        <input type="email" id="Email" value={formdata.email} placeholder='example@gmail.com' className='settingInput' onChange={(e)=> setformdata({...formdata, email : e.target.value})}/>
+        <input type="email" id="Email" value={formdata.email} style={{marginBottom:"0px"}} placeholder='example@gmail.com' className='settingInput' onChange={(e)=> setformdata({...formdata, email : e.target.value})}/>
       </div>
       <div className='InputContainer'>
         <span  className='text labelText'>Mobile No.</span>
-        <input type="tel" id="Mobile" value={formdata.mobile} placeholder='8888888888' className='settingInput' onChange={(e)=> setformdata({...formdata, mobile : e.target.value})}/>
+        <input type="tel" id="Mobile" value={formdata.mobile} style={{marginBottom:"0px"}} placeholder='8888888888' className='settingInput' onChange={(e)=> setformdata({...formdata, mobile : e.target.value})}/>
       </div>
       <div className='InputContainer' style={{marginTop:'40px'}}>
         <button className='buttons text' style={{width:'100%'}} onClick={handleSubmit}>Save Changes</button>

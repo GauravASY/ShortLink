@@ -26,7 +26,7 @@ function Navbar({setLinkBoxVisible, setLinkType, searchTerm, setSearchTerm, user
             <button className='buttons text' onClick={handleClick}>+ Create new</button>
             <div style={{display:'flex', gap:'10px', alignItems:'center', position:'relative', marginLeft:'-8rem'}}>
                 <img src={search} alt="Search Icon" style={{position:'absolute', left:'12px'}}/>
-                <input type="text" placeholder='Search by remarks' className='inputCell' style={{paddingLeft:'36px'}} value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)}/>
+                <input type="text" placeholder='Search by remarks' className='inputCell' style={{paddingLeft:'36px', marginBottom:"0px"}} value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)}/>
             </div>
             <div className="headings" style={{display:'flex', justifyContent:'center', alignItems:'center', padding:'8px', borderRadius:'4rem', background:'#FDE48A', color:'#923E0E'}}>
                 { user?.username?.split(' ').map(word => word[0].toUpperCase()).join('')}
