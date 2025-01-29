@@ -185,7 +185,7 @@ userRouter.get('/dashboard',authorization, async (req, res) => {
             remarks: url.remarks,
             deviceInfo: {
                 ipAddress: url.ipAddress,
-                device: url.userDevice
+                device: url.deviceType
             }
         }));
 
