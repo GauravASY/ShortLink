@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import axios from 'axios'
 import "chart.js/auto";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  // Sample data
-  const totalClicks = 1234;
-  const dateWiseClicks = [
-    { date: "21-01-25", clicks: 1234 },
-    { date: "20-01-25", clicks: 1140 },
-    { date: "19-01-25", clicks: 134 },
-    { date: "18-01-25", clicks: 34 },
-  ];
-  const deviceClicks = [
-    { device: "Mobile", clicks: 134 },
-    { device: "Desktop", clicks: 40 },
-    { device: "Tablet", clicks: 3 },
-  ];
+  const token = localStorage.getItem('token');
+  const [totalClicks, setTotalClicks] = useState(0);
+  const [dateWiseClicks, setDateWiseClicks] = useState([]);
+  const [deviceClicks, setDeviceClicks] = useState([]);
 
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/dashboard`, {
+          headers : {
+            'Authorization' : token
+          }
+        });
+        
+        if (response.data.success) {
+          setTotalClicks(response.data.data.analytics.totalClicks);
+          setDateWiseClicks(response.data.data.analytics.dateWiseClicks);
+          setDeviceClicks(response.data.data.analytics.deviceClicks);
+        }
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+      } 
+    };
+
+    fetchDashboardData();
+  }, []);
 
   const dateWiseData = {
     labels: dateWiseClicks.map((item) => item.date),

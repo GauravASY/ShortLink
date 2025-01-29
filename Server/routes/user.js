@@ -162,4 +162,95 @@ userRouter.delete("/deleteAcc", authorization, async(req, res)=>{
     }
 })
 
+userRouter.get('/dashboard',authorization, async (req, res) => {
+    const userId = req.userId;
+    try {
+        const user = await User.findById(userId)
+            .populate({
+                path: 'shortUrls',
+                model: 'ShortUrl',
+                options: { sort: { createdAt: -1 } }
+            });
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        const urlsData = user.shortUrls.map(url => ({
+            id: url._id,
+            originalLink: url.originalUrl,
+            shortLink: url.shortId,
+            clicks: url.clicks,
+            createdAt: url.createdAt,
+            expiresAt: url.expiresAt,
+            remarks: url.remarks,
+            deviceInfo: {
+                ipAddress: url.ipAddress,
+                device: url.userDevice
+            }
+        }));
+
+        const totalClicks = urlsData.reduce((sum, url) => sum + url.clicks, 0);
+        const last4Days = [...Array(4)].map((_, index) => {
+            const date = new Date();
+            date.setDate(date.getDate() - index);
+            return date;
+        });
+
+        const dateWiseClicks = last4Days.map(date => {
+            const dateStr = date.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: '2-digit'
+            });
+            const clicks = user.shortUrls.reduce((sum, url) => {
+                if (new Date(url.createdAt).toDateString() === date.toDateString()) {
+                    return sum + url.clicks;
+                }
+                return sum;
+            }, 0);
+
+            return {
+                date: dateStr,
+                clicks: clicks
+            };
+        });
+
+        const deviceCounts = user.shortUrls.reduce((acc, url) => {
+            const device = url.userDevice || 'Unknown';
+            acc[device] = (acc[device] || 0) + url.clicks;
+            return acc;
+        }, {});
+
+        const deviceClicks = Object.entries(deviceCounts).map(([device, clicks]) => ({
+            device,
+            clicks
+        }));
+
+        const analytics = {
+            totalClicks,
+            dateWiseClicks,
+            deviceClicks
+        };
+
+        res.json({
+            success: true,
+            data: {
+                urls: urlsData,
+                analytics: analytics,
+                user: {
+                    id: user._id,
+                    username: user.username,
+                    email: user.email
+                }
+            }
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            msg: 'Error fetching dashboard data'
+        });
+    }
+});
+
 export default userRouter;
