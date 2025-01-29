@@ -28,7 +28,7 @@ linkRouter.post("/", authorization, async (req, res) => {
       originalUrl,
       remarks,
       expiresAt : formattedDate,
-      ipAddress: req.headers['x-forwarded-for'] || req.ip,
+      ipAddress: req.ip,
       userDevice: req.headers["user-agent"] || "Unknown",
     });
 
