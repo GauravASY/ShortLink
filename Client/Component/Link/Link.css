@@ -37,6 +37,7 @@
     padding: 12px;
     border: 1px solid #ddd;
     overflow: hidden;
+    max-width : 280px;
   }
   
   a {
