@@ -73,7 +73,7 @@ function Analytics() {
               </td>
               <td>
                 <a
-                  href={`${import.meta.env.VITE_BACKEND_URL}/api/v1/link/${link.shortId}`}
+                  href={`${import.meta.env.VITE_BACKEND_URL}/api/v1/link/${data.shortId}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
