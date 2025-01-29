@@ -2,10 +2,10 @@ import express from "express";
 import ShortUrl from "../models/linkModel.js";
 import User from "../models/userModel.js";
 import authorization from "../middlewares/authorization.js";
-import UAParser from 'ua-parser-js';
-
+import userAgent from 'express-useragent';
 const linkRouter = express.Router();
 
+linkRouter.use(userAgent.express());
 
 linkRouter.post("/", authorization, async (req, res) => {
   const { originalUrl, remarks, expiresAt } = req.body;
@@ -25,15 +25,16 @@ linkRouter.post("/", authorization, async (req, res) => {
   }
 
   try {
-    const uaParser = new UAParser();
-    const ua = uaParser.setUA(req.headers['user-agent']).getResult();
+    const os = req.useragent.os?.toLowerCase() || 'unknown';
+    const deviceType = req.useragent.isMobile ? 'mobile' : 
+                       req.useragent.isTablet ? 'tablet' : 'desktop';
     const newLink = new ShortUrl({
       originalUrl,
       remarks,
       expiresAt : formattedDate,
       ipAddress: req.ip,
-      userDevice: ua.os.name?.toLowerCase(),
-      deviceType: ua.device.type || 'desktop'
+      userDevice: os,
+      deviceType: deviceType
     });
 
     await newLink.save();

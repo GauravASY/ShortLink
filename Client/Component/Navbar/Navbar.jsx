@@ -1,13 +1,22 @@
 import React from 'react'
 import search from '../../src/assets/Frame.png'
 import sun from '../../src/assets/Sun.png'
+import { useNavigate } from 'react-router-dom';
 
 function Navbar({setLinkBoxVisible, setLinkType, searchTerm, setSearchTerm, user}) {
+    const [isDropdownVisible, setisDropdownVisible] = useState(false);
+    const navigate = useNavigate();
 
     function handleClick(){
         setLinkBoxVisible(true);
         setLinkType("New");
     }
+
+    function handlelogout(){
+        localStorage.removeItem('token');
+        navigate("/signin");
+    }
+    
     let date = new Date();
     const options = { weekday: 'short', month: 'short', day: 'numeric' };
     date = date.toLocaleDateString('en-US', options);
@@ -28,8 +37,15 @@ function Navbar({setLinkBoxVisible, setLinkType, searchTerm, setSearchTerm, user
                 <img src={search} alt="Search Icon" style={{position:'absolute', left:'12px'}}/>
                 <input type="text" placeholder='Search by remarks' className='inputCell' style={{paddingLeft:'36px', marginBottom:"0px"}} value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)}/>
             </div>
-            <div className="headings" style={{display:'flex', justifyContent:'center', alignItems:'center', padding:'8px', borderRadius:'4rem', background:'#FDE48A', color:'#923E0E'}}>
+            <div className="headings dropdownContainer" style={{display:'flex', justifyContent:'center', alignItems:'center', padding:'8px', borderRadius:'4rem', background:'#FDE48A', color:'#923E0E'}}
+            onClick={()=> setisDropdownVisible(!isDropdownVisible)}
+            >
                 { user?.username?.split(' ').map(word => word[0].toUpperCase()).join('')}
+            {isDropdownVisible && (
+                <div className="dropdown">
+                    <span className='text' style={{fontSize:"0.7rem"}} onClick={handlelogout}>Logout</span>
+                </div>
+            )}
             </div>
         </div>
     </div>
