@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import search from '../../src/assets/Frame.png'
 import sun from '../../src/assets/Sun.png'
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ function Navbar({setLinkBoxVisible, setLinkType, searchTerm, setSearchTerm, user
         localStorage.removeItem('token');
         navigate("/signin");
     }
-    
+
     let date = new Date();
     const options = { weekday: 'short', month: 'short', day: 'numeric' };
     date = date.toLocaleDateString('en-US', options);
